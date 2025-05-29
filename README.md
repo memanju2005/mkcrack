@@ -26,13 +26,15 @@ Install the library via pip:
 ```bash
 pip install mkcrack
 
----
+```
 
 
-📖 Usage Steps
+**📖 Usage Steps**
+
 Follow these steps to test cracking a Yescrypt hash:
 
 1️⃣ Find Your Yescrypt Hash
+
 Open a terminal in your Linux system.
 
 Use the following command to safely view your hash (replace yourusername with your actual username):
@@ -47,15 +49,20 @@ sudo grep '^yourusername:' /etc/shadow
 The output will look like this:
 
 
-
+```bash
 yourusername:$y$j9T$jtPDS9VZ13n3wXmFOvYIG1$HCmUaqmBK.3U2H2MtN9audXFbBUwvunR01ghnKoGF/9:...
+```
+
+>🔒 In Linux systems, user login passwords are not stored in plaintext (for security reasons). Instead, they are stored in hashed form (scrambled using algorithms like Yescrypt, SHA-512, etc.).
+---
+
 Copy the part starting with $y$ — this is your Yescrypt hash.
 
 2️⃣ Create a Wordlist
 Create a file named mywords.txt in your project directory.
 
 Add possible password guesses (one per line):
-
+```bash
 nginx
 Copy
 Edit
@@ -64,6 +71,7 @@ password123
 letmein
 supersecure
 mypassword
+```
 This is your dictionary for guessing.
 
 3️⃣ Create the Python Script
@@ -71,8 +79,8 @@ Create a new Python file named myfunc.py.
 
 Add the following code:
 
-``bash 
-from mkcrack import cracker ```
+```python
+from mkcrack import cracker 
 
 # Replace this with your actual Yescrypt hash
 stored_hash = '$y$j9T$jtPDS9VZ13n3wXmFOvYIG1$HCmUaqmBK.3U2H2MtN9audXFbBUwvunR01ghnKoGF/9'
@@ -87,39 +95,40 @@ if password:
     print(f"Cracked password: {password}")
 else:
     print("Password not found in the wordlist.")
+```
 4️⃣ Run the Script
 In your terminal, execute the script:
 
-bash
-Copy
-Edit
+```bash
+
 python3 myfunc.py
+```
 If the password is in your wordlist, you’ll see:
 
-yaml
-Copy
-Edit
+```bash
 Cracked password: letmein
+
 Otherwise:
 
-pgsql
-Copy
-Edit
 Password not found in the wordlist.
-⚠️ Why You Should NEVER Share Your Password Hash
-Even though a hash looks scrambled, sharing it can be risky:
+```
+**⚠️ Why You Should NEVER Share Your Password Hash
+Even though a hash looks scrambled, sharing it can be risky:**
 
 Attackers can attempt offline brute-force attacks.
 
 Weak passwords can be cracked quickly.
 
-Hash reuse risk: Cracking one hash can compromise multiple accounts.
+**Hash reuse risk:**
+
+Cracking one hash can compromise multiple accounts.
 
 Targeted attacks become easier with your hash in hand.
 
 👉 Treat your password hash like a secret key—never share it publicly.
 
-📚 Final Thoughts
+**📚 Final Thoughts**
+
 ✅ Yescrypt is strong, but password security is a team effort:
 
 Use strong, unique passwords.
@@ -130,11 +139,12 @@ Understand how hashes work.
 
 Stay safe, stay ethical, and use this knowledge for good! ✨
 
-📄 License
-MIT License
 
-🌟 Want to contribute?
-Feel free to open issues, suggest features, or submit pull requests. Let’s learn and grow together!
+**🌟 Want to contribute?**
+
+Feel free to open issues, suggest features, or submit pull requests. 
+
+Let’s learn and grow together!
 
 ---
 
